@@ -19,3 +19,11 @@ app.use('/', router);
 //Server
 var port = process.env.PORT || 3000;
 app.listen(port);
+
+app.use(function (err, req, res, next) {
+res.status(err.status || 500);
+res.render('error', {
+message: err.message,
+error: err
+});
+});
